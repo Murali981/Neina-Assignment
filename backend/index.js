@@ -7,7 +7,7 @@ dotenv.config({ path: "./config.env" }); // This line loads the environment vari
 // them in the node.js environment variables.
 
 const cors = require("cors");
-const Booking = require("../models/bookingModel");
+const Booking = require("./models/bookingModel");
 
 const app = express();
 
@@ -33,8 +33,16 @@ mongoose
     console.log("Error");
   });
 
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  })
+);
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.json({ message: "Hello World from backend" });
+});
 
 // Create booking
 app.post("/api/bookings", async (req, res) => {
