@@ -1,4 +1,4 @@
-import React from "react";
+"use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const BookingSummary = ({ booking }) => {
